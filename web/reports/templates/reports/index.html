@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="ru">
+  <meta charset="utf-8">
+  <title>Заявка на отчёт</title>
+  <form action="/reports/" method="post">
+    {% csrf_token %}
+    <button type="submit">Подготовить отчёт</button>
+  </form>
+</html>

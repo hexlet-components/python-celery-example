@@ -1,0 +1,13 @@
+from pathlib import Path
+
+from celery import Celery
+
+app = Celery("tasks", broker="redis://localhost:6379/0")
+
+
+@app.task
+def build_report(request_id: int) -> str:
+    path = Path("reports") / f"{request_id}.txt"
+    path.parent.mkdir(exist_ok=True)
+    path.write_text(f"Заявка {request_id}\n", encoding="utf-8")
+    return str(path)
